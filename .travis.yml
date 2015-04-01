@@ -1,0 +1,10 @@
+language: ruby
+sudo: false
+cache: bundler
+rvm:
+  - '2.2'
+  - '2.1'
+addons:
+  code_climate:
+    repo_token:
+      secure: "BPmBX98i6pzGOmJfgvXNuCxK1uftL8x8nLKpsuwVx+XM6t2wmtiiTTiT4xUJC0u429+M+7tdIs82KxvkRxu649sK4OFrzaxNKLtVa2cO8Lz8aGQdToJkhEADfaqTlJUn4/GS6gU67C/iPx3I7UYT5s4mK5jNY2Q18glwXrS50GA="
