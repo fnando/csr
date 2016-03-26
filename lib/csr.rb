@@ -1,6 +1,6 @@
-require 'openssl'
-require 'fileutils'
-require 'csr/version'
+require "openssl"
+require "fileutils"
+require "csr/version"
 
 class CSR
   attr_reader :bits, :country, :state, :city, :department, :organization,
@@ -17,7 +17,7 @@ class CSR
                   common_name:, email:, bits: 4096, private_key: nil,
                   passphrase: nil, cipher: nil, digest: nil)
 
-    cipher        ||= OpenSSL::Cipher::Cipher.new('des-ede3-cbc')
+    cipher        ||= OpenSSL::Cipher::Cipher.new("des-ede3-cbc")
     digest        ||= OpenSSL::Digest::SHA256.new
     @country      = country
     @state        = state
@@ -41,13 +41,13 @@ class CSR
     @request ||= OpenSSL::X509::Request.new.tap do |request|
       request.version = 0
       request.subject = OpenSSL::X509::Name.new([
-        ['C',             country,      OpenSSL::ASN1::PRINTABLESTRING],
-        ['ST',            state,        OpenSSL::ASN1::PRINTABLESTRING],
-        ['L',             city,         OpenSSL::ASN1::PRINTABLESTRING],
-        ['O',             organization, OpenSSL::ASN1::UTF8STRING],
-        ['OU',            department,   OpenSSL::ASN1::UTF8STRING],
-        ['CN',            common_name,  OpenSSL::ASN1::UTF8STRING],
-        ['emailAddress',  email,        OpenSSL::ASN1::UTF8STRING]
+        ["C",             country,      OpenSSL::ASN1::PRINTABLESTRING],
+        ["ST",            state,        OpenSSL::ASN1::PRINTABLESTRING],
+        ["L",             city,         OpenSSL::ASN1::PRINTABLESTRING],
+        ["O",             organization, OpenSSL::ASN1::UTF8STRING],
+        ["OU",            department,   OpenSSL::ASN1::UTF8STRING],
+        ["CN",            common_name,  OpenSSL::ASN1::UTF8STRING],
+        ["emailAddress",  email,        OpenSSL::ASN1::UTF8STRING]
       ])
 
       request.public_key = private_key.public_key
@@ -81,13 +81,13 @@ class CSR
   private
 
   def save_private_key_to(path)
-    File.open(path, 'w') do |file|
+    File.open(path, "w") do |file|
       file << private_key_pem
     end
   end
 
   def save_csr_to(path)
-    File.open(path, 'w') do |file|
+    File.open(path, "w") do |file|
       file << pem
     end
   end
