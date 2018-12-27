@@ -1,8 +1,10 @@
 # CSR
 
-[![Build Status](https://travis-ci.org/fnando/csr.svg)](https://travis-ci.org/fnando/csr)
+[![Travis-CI](https://travis-ci.org/fnando/csr.svg)](https://travis-ci.org/fnando/csr)
 [![Code Climate](https://codeclimate.com/github/fnando/csr/badges/gpa.svg)](https://codeclimate.com/github/fnando/csr)
-[![Test Coverage](https://codeclimate.com/github/fnando/csr/badges/coverage.svg)](https://codeclimate.com/github/fnando/csr)
+[![Test Coverage](https://codeclimate.com/github/fnando/csr/badges/coverage.svg)](https://codeclimate.com/github/fnando/csr/coverage)
+[![Gem](https://img.shields.io/gem/v/csr.svg)](https://rubygems.org/gems/csr)
+[![Gem](https://img.shields.io/gem/dt/csr.svg)](https://rubygems.org/gems/csr)
 
 Generate CSR (Certificate Signing Request) using Ruby and OpenSSL.
 
