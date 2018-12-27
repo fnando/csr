@@ -2,9 +2,17 @@ language: ruby
 sudo: false
 cache: bundler
 rvm:
-  - '2.2'
-  - '2.1'
-addons:
-  code_climate:
-    repo_token:
-      secure: "BPmBX98i6pzGOmJfgvXNuCxK1uftL8x8nLKpsuwVx+XM6t2wmtiiTTiT4xUJC0u429+M+7tdIs82KxvkRxu649sK4OFrzaxNKLtVa2cO8Lz8aGQdToJkhEADfaqTlJUn4/GS6gU67C/iPx3I7UYT5s4mK5jNY2Q18glwXrS50GA="
+- 2.6.0
+- 2.5.2
+- 2.4.5
+notifications:
+  email: false
+before_script:
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
+after_script:
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+env:
+  global:
+    secure: WAtIHHjBdoPXQNWZe5tZf7BJtM/cMcrxaH2zWrTyFiQ6EYg7FOnCmWCBVqcL6OGOT0/VkhFxAvVd5u+TlRw262hT0Rd+Eck70xnVJ0E7rii3i/2cld8uHeDamxt9OwuJKitmJyLjmfGBsFD0gGTNS0Y5ekBylbSEMVG4to6shSM=

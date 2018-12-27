@@ -17,7 +17,7 @@ class CSR
                   common_name:, email:, bits: 4096, private_key: nil,
                   passphrase: nil, cipher: nil, digest: nil)
 
-    cipher        ||= OpenSSL::Cipher::Cipher.new("des-ede3-cbc")
+    cipher        ||= OpenSSL::Cipher.new("des-ede3-cbc")
     digest        ||= OpenSSL::Digest::SHA256.new
     @country      = country
     @state        = state
