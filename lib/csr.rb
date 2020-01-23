@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "openssl"
 require "fileutils"
 require "csr/version"
@@ -14,15 +16,15 @@ class CSR
   end
 
   def initialize(country:, state:, city:, department:, organization:,
-                  common_name:, email:, bits: 4096, private_key: nil,
-                  passphrase: nil, cipher: nil, digest: nil)
+                 common_name:, email:, bits: 4096, private_key: nil,
+                 passphrase: nil, cipher: nil, digest: nil)
 
     cipher        ||= OpenSSL::Cipher.new("des-ede3-cbc")
     digest        ||= OpenSSL::Digest::SHA256.new
-    @country      = country
-    @state        = state
-    @city         = city
-    @department   = department
+    @country = country
+    @state = state
+    @city = city
+    @department = department
     @organization = organization
     @common_name  = common_name
     @email        = email
@@ -78,15 +80,13 @@ class CSR
     request.to_pem
   end
 
-  private
-
-  def save_private_key_to(path)
+  private def save_private_key_to(path)
     File.open(path, "w") do |file|
       file << private_key_pem
     end
   end
 
-  def save_csr_to(path)
+  private def save_csr_to(path)
     File.open(path, "w") do |file|
       file << pem
     end
