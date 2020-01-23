@@ -108,6 +108,29 @@ class CSRTest < Minitest::Test
     assert CSR.verify?(csr_content, private_key_content)
   end
 
+  test "loads CSR" do
+    csr = create_csr
+    csr.save_to("./tmp", "server")
+
+    parsed_csr = CSR.load(
+      File.read("./tmp/server.csr"),
+      private_key: File.read("./tmp/server.key"),
+      bits: 2048,
+      passphrase: "secret",
+      cipher: OpenSSL::Cipher.new("des-ede3-cbc")
+    )
+
+    assert_equal "US", parsed_csr.country
+    assert_equal "CA", parsed_csr.state
+    assert_equal "San Francisco", parsed_csr.city
+    assert_equal "Web", parsed_csr.department
+    assert_equal "Example Inc.", parsed_csr.organization
+    assert_equal "example.com", parsed_csr.common_name
+    assert_equal "john@example.com", parsed_csr.email
+    assert_equal "secret", parsed_csr.passphrase
+    assert_equal 2048, parsed_csr.bits
+  end
+
   def create_csr(**kwargs)
     kwargs = {
       country: "US",

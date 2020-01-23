@@ -13,7 +13,7 @@ Generate CSR (Certificate Signing Request) using Ruby and OpenSSL.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'csr'
+gem "csr"
 ```
 
 And then execute:
@@ -27,21 +27,21 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-require 'csr'
+require "csr"
 
 csr = CSR.new(
-  country: 'US',
-  state: 'CA',
-  city: 'San Francisco',
-  department: 'Web',
-  organization: 'Example Inc.',
-  common_name: 'example.com',
-  email: 'john@example.com'
+  country: "US",
+  state: "CA",
+  city: "San Francisco",
+  department: "Web",
+  organization: "Example Inc.",
+  common_name: "example.com",
+  email: "john@example.com"
 )
 
 csr.pem
 csr.private_key_pem
-csr.save_to '/tmp', 'server'
+csr.save_to "/tmp", "server"
 #=> creates /tmp/server.csr and /tmp/server.key
 ```
 
@@ -49,14 +49,14 @@ To use a passphrase on your private key, do it like this:
 
 ```ruby
 csr = CSR.new(
-  country: 'US',
-  state: 'CA',
-  city: 'San Francisco',
-  department: 'Web',
-  organization: 'Example Inc.',
-  common_name: 'example.com',
-  email: 'john@example.com',
-  passphrase: 'sekret'
+  country: "US",
+  state: "CA",
+  city: "San Francisco",
+  department: "Web",
+  organization: "Example Inc.",
+  common_name: "example.com",
+  email: "john@example.com",
+  passphrase: "sekret"
 )
 ```
 
@@ -70,11 +70,30 @@ CSR.verify?(csr_content, pk_content)
 CSR.verify?(csr_content, pk_content, passphrase)
 ```
 
+To load a CSR back:
+
+```ruby
+csr = CSR.load(
+  File.read("/tmp/server.csr"),
+  passphrase: "sekret",
+  private_key: File.read("/tmp/server.key")
+)
+
+csr.common_name = "example.com"
+```
+
+Notice that `private_key` and `passphrase` are optional when loading CSR; it's
+just a shortcut in case you want to regenerate CSR.
+
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies. Then, run
+`bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To
+release a new version, update the version number in `version.rb`, and then run
+`bundle exec rake release` to create a git tag for the version, push git commits
+and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
