@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = spec.summary
   spec.homepage      = "http://rubygems.org/gems/csr"
   spec.license       = "MIT"
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.files         = `git ls-files -z`
                        .split("\x0")

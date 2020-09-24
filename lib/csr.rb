@@ -34,7 +34,7 @@ class CSR
   )
     request = OpenSSL::X509::Request.new(csr)
     der = request.subject.to_a
-    subject = der.each_with_object({}) do |(oid, value), buffer|
+    subject = der.each_with_object({}) do |(oid, value), buffer| # rubocop:disable Style/HashTransformKeys
       buffer[SUBJECT.fetch(oid)] = value
     end
 
@@ -62,7 +62,7 @@ class CSR
     state: nil
   )
     cipher        ||= OpenSSL::Cipher.new("des-ede3-cbc")
-    digest        ||= OpenSSL::Digest::SHA256.new
+    digest        ||= OpenSSL::Digest.new("SHA256")
 
     @country = country
     @state = state

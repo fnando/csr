@@ -16,7 +16,7 @@ class CSRTest < Minitest::Test
   end
 
   test "uses custom digest" do
-    csr = create_csr(digest: OpenSSL::Digest::SHA1.new)
+    csr = create_csr(digest: OpenSSL::Digest.new("SHA1"))
 
     assert_equal "sha1WithRSAEncryption", csr.request.signature_algorithm
   end
